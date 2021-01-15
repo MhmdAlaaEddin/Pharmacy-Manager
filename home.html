@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    <title>Home seller</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-primary" style="background-color: #e3f2fd;">
+            <div class="container">
+            <a class="navbar-brand" href="#" style="font-size: 3rem;">Pharmacy Manger</a>
+            </div>
+          
+          </nav>
+    </header>
+<section class="container my-3" id="sell"> 
+    <form>
+        <h2>Sell Item</h2>
+        <div class="form-row">
+          <div class="form-group col-md-9">
+            <label for="inputEmail4">Name</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputPassword4">Quantity</label>
+            <input type="number" class="form-control" id="quan">
+          </div>
+        </div>
+        
+        <!--<input type="button" value="add to invoice" onclick="add()" class="btn btn-primary">
+        <div class="my-1 row" id="invoice">  </div> -->
+        
+        <input type="button" value="Sell Items" onclick="sell()" class="btn btn-primary">
+
+      </form>
+</section>
+<section class="container my-3" id="buy"> 
+    <form>
+        <h2>Buy New Items</h2>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputEmail4">Name</label>
+            <input type="text" class="form-control" id="Bname">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputPassword4">Quantity</label>
+            <input type="number" class="form-control" id="Bquan">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputPassword4">Item Price</label>
+            <input type="number" class="form-control" id="Iprice">
+          </div>
+        </div>
+        <div class="photo row">
+            <div class=" col-6">
+                <video id="video" playsinline autoplay width="200" height="200"></video>
+                <!-- Canvas web API-->
+                <!-- <input type="button" id="snap" value="Capture"> -->
+            </div>
+           
+           <!-- video SnapShot-->
+           <div class="col-6">
+           <canvas id="canvas" width="200" height="200"> </canvas>
+        </div>
+        </div>
+        
+     
+        
+        <input type="button" value="Buy New Item" onclick="additem()" class="btn btn-primary">
+    </form>
+</section>
+<section class="container my-3" id="Search"> 
+    
+    <form>
+        <h2>Search Items</h2>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputEmail4">Name</label>
+            <input type="text" class="form-control" id="searchName">
+          </div>
+        
+          <input type="button" value="Search Item" onclick="search()" class="btn btn-primary "> <br>
+          <div id="res" class="col-md-12" style="display: block;"></div>
+      </form>
+</section>
+<script src="script2.js"></script>
+<script>
+    const video= document.getElementById('video');
+    const canvas= document.getElementById('canvas');
+    const snap = document.getElementById('snap');
+    const errorMsgElement = document.getElementById('spanErrorMsg');
+  
+    //Access webcam
+    async function init(){
+        try{
+            const stream = await navigator.mediaDevices.getUserMedia({video:true});
+            handleSuccess(stream);
+        }
+        catch (e){
+  //errorMsgElement.innerHTML=`navigator.getUserMedia.error:${e.toString()}`;
+
+        }
+    }
+  //Success
+  function handleSuccess(stream){
+      window.stream=stream;
+      video.srcObject=stream;
+  }
+  //load init
+  init();
+  //Draw Image
+  //var context= canvas.getContext('2d');
+  //snap.addEventListener("click", function(){
+     // context.drawImage(video ,0,0,200,200);
+    //   var dataURL = canvas.toDataURL();
+
+    //   console.log(dataURL);
+  //});
+  var db=openDatabase('database','1.0','login database',4*1024*1024);
+
+ /* db.transaction(function (tx) { 
+        tx.executeSql('delete from item');
+        
+     });*/
+
+    
+
+</script>
+</body>
+</html>
